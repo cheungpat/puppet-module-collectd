@@ -11,9 +11,9 @@ class collectd::plugin::bind (
   $zonemaintstats = true,
   $views          = [],
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_bool(
     $memorystats,
     $opcodes,

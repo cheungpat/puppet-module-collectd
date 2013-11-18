@@ -3,9 +3,9 @@ class collectd::plugin::apache (
   $ensure     = present,
   $instances  = { 'localhost' => { 'url' => 'http://localhost/mod_status?auto' } },
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_hash($instances)
 
   file { 'aapche.conf':

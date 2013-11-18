@@ -3,10 +3,10 @@ define collectd::plugin (
   $ensure = 'present',
 ) {
 
-  include collectd::params
+  include collectd
 
   $plugin = $name
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file { "${plugin}.load":
     ensure  => $ensure,

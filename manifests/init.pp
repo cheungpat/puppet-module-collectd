@@ -8,25 +8,29 @@ class collectd(
   $threads      = 5,
   $timeout      = 2,
   $version      = installed,
-) {
-  include collectd::params
+  $package      = $collectd::params::package,
+  $provider     = $collectd::params::provider,
+  $plugin_conf_dir = $collectd::params::plugin_conf_dir,
+  $config_file  = $collectd::params::config_file,
+  $root_group   = $collectd::params::root_group,
+  $service_name   = $collectd::params::service_name,
+) inherits collectd::params {
 
-  $plugin_conf_dir = $collectd::params::plugin_conf_dir
   validate_bool($purge_config, $fqdnlookup)
 
   package { 'collectd':
     ensure   => $version,
-    name     => $collectd::params::package,
-    provider => $collectd::params::provider,
+    name     => $package,
+    provider => $provider,
     before   => File['collectd.conf', 'collectd.d'],
   }
 
   file { 'collectd.d':
     ensure  => directory,
-    name    => $collectd::params::plugin_conf_dir,
+    name    => $plugin_conf_dir,
     mode    => '0644',
     owner   => 'root',
-    group   => $collectd::params::root_group,
+    group   => $root_group,
     purge   => $purge,
     recurse => $recurse,
   }
@@ -37,7 +41,7 @@ class collectd(
   }
 
   file { 'collectd.conf':
-    path    => $collectd::params::config_file,
+    path    => $config_file,
     content => $conf_content,
     notify  => Service['collectd'],
   }
@@ -46,22 +50,22 @@ class collectd(
     # former include of conf_d directory
     file_line { 'include_conf_d':
       ensure  => absent,
-      line    => "Include \"${collectd::params::plugin_conf_dir}/\"",
-      path    => $collectd::params::config_file,
+      line    => "Include \"${plugin_conf_dir}/\"",
+      path    => $config_file,
       notify  => Service['collectd'],
     }
     # include (conf_d directory)/*.conf
     file_line { 'include_conf_d_dot_conf':
       ensure  => present,
-      line    => "Include \"${collectd::params::plugin_conf_dir}/*.conf\"",
-      path    => $collectd::params::config_file,
+      line    => "Include \"${plugin_conf_dir}/*.conf\"",
+      path    => $config_file,
       notify  => Service['collectd'],
     }
   }
 
   service { 'collectd':
     ensure    => running,
-    name      => $collectd::params::service_name,
+    name      => $service_name,
     enable    => true,
     require   => Package['collectd'],
   }

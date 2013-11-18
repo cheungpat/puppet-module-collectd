@@ -3,9 +3,9 @@ class collectd::plugin::iptables (
   $ensure = present,
   $chains = [],
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_hash($chains)
 
   file { 'iptables.conf':

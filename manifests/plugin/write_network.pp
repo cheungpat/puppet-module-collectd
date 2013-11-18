@@ -3,9 +3,9 @@ class collectd::plugin::write_network (
   $ensure  = 'present',
   $servers = { 'localhost'  =>  { 'serverport' => '25826' } },
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_hash($servers)
 
   file { 'write_network.conf':

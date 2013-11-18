@@ -8,9 +8,9 @@ class collectd::plugin::nginx (
   $verifyhost = undef,
   $cacert     = undef,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file { 'nginx.conf':
     ensure  => $collectd::plugin::nginx::ensure,

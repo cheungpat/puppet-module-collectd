@@ -8,9 +8,9 @@ class collectd::plugin::write_riemann (
   $store_rates      = false,
   $always_append_ds = false,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dif = $collectd::params::plugin_conf_dir
+  $conf_dif = $collectd::plugin_conf_dir
   validate_bool($store_rates)
   validate_bool($always_append_ds)
 

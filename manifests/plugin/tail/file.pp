@@ -5,10 +5,10 @@ define collectd::plugin::tail::file (
   $matches,
   $ensure = 'present',
 ) {
-  include collectd::params
+  include collectd
   include collectd::plugin::tail
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   validate_absolute_path($filename)
   validate_string($instance)

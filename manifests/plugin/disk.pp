@@ -4,9 +4,9 @@ class collectd::plugin::disk (
   $disks          = [],
   $ignoreselected = false,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_array($disks)
   validate_bool($ignoreselected)
 

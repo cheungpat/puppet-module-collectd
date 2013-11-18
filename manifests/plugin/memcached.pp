@@ -4,9 +4,9 @@ class collectd::plugin::memcached (
   $host   = '127.0.0.1',
   $port   = '11211',
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file { 'memcached.conf':
     ensure    => $ensure,

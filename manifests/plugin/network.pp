@@ -17,9 +17,9 @@ class collectd::plugin::network (
   $serverport           = 25826,
   $timetolive           = undef,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_bool(
     $forward,
     $reportstats,

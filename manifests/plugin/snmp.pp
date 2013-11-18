@@ -4,9 +4,9 @@ class collectd::plugin::snmp (
   $data   = undef,
   $hosts  = undef,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   validate_hash($data, $hosts)
 

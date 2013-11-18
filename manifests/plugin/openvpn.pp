@@ -7,9 +7,9 @@ class collectd::plugin::openvpn (
   $collectusercount       = false,
   $ensure                 = present
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_absolute_path($statusfile)
   validate_bool(
     $improvednamingschema,

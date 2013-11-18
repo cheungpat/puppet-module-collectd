@@ -9,10 +9,10 @@ define collectd::plugin::mysql::database (
   $masterstats = false,
   $slavestats  = false,
 ) {
-  include collectd::params
+  include collectd
   include collectd::plugin::mysql
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   validate_string($database, $host, $username, $password, $port)
   validate_bool($masterstats, $slavestats)

@@ -3,9 +3,9 @@ class collectd::plugin::syslog (
   $ensure    = present,
   $log_level = 'info'
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file { 'syslog.conf':
     ensure    => $collectd::plugin::syslog::ensure,

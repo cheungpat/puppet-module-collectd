@@ -5,12 +5,12 @@ define collectd::plugin::exec (
   $exec              = [],
   $notification_exec = [],
 ) {
-  include collectd::params
+  include collectd
 
   validate_array($exec)
   validate_array($notification_exec)
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file {
     "${name}.load":

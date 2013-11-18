@@ -5,9 +5,9 @@ class collectd::plugin::write_graphite (
   $graphiteport = 2003,
   $storerates   = false,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_bool($storerates)
 
   file { 'write_graphite.conf':

@@ -6,9 +6,9 @@ class collectd::plugin::ntpd (
   $reverselookups   = false,
   $includeunitid    = false,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file { 'ntpd.conf':
     ensure    => $collectd::plugin::ntpd::ensure,

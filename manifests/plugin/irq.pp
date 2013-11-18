@@ -4,9 +4,9 @@ class collectd::plugin::irq (
   $irqs           = [],
   $ignoreselected = false,
 ) {
-  include collectd::params
+  include collectd
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
   validate_array($irqs)
   validate_bool($ignoreselected)
 

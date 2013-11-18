@@ -5,11 +5,11 @@ define collectd::plugin::python (
   $script_source,
   $config = {},
 ) {
-  include collectd::params
+  include collectd
 
   validate_hash($config)
 
-  $conf_dir = $collectd::params::plugin_conf_dir
+  $conf_dir = $collectd::plugin_conf_dir
 
   file {
     "${name}.load":
